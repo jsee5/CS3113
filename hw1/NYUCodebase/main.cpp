@@ -58,9 +58,7 @@ int main(int argc, char *argv[])
     glViewport(0, 0, 640, 360);
     
     ShaderProgram program(RESOURCE_FOLDER"vertex_textured.glsl", RESOURCE_FOLDER"fragment_textured.glsl");
-    
-   
-    
+
     Matrix blackHole2_projectMatrix;
     Matrix blackHole2_modelMatrix;
     Matrix blackHole2_viewMatrix;
@@ -82,9 +80,7 @@ int main(int argc, char *argv[])
     
     glUseProgram(program.programID);
     
-    
-
-
+    //positioning the blackholes
     blackHole2_modelMatrix.Translate(4.25, 0.0, 0.0);
     blackHole1_modelMatrix.Translate(-0.4, 1.0, 0.0);
 
@@ -106,24 +102,26 @@ int main(int argc, char *argv[])
         }
 
         
-        //black background
+        //boring black background
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
         
         
-        //time-based
+        //time-tracking
         float ticks = (float)SDL_GetTicks()/1000.0f;
         float elapsed = ticks - lastFrameTicks;
         lastFrameTicks = ticks;
         
-   
+        //weeeee~~~ spinning
         spin(blackHole2_modelMatrix, elapsed, 22.5f);
         spin(blackHole1_modelMatrix, elapsed, -35.0f);
+        
+        
+        //drawing black hole
         program.setModelMatrix(blackHole2_modelMatrix);
         program.setProjectionMatrix(blackHole2_projectMatrix);
         program.setViewMatrix(blackHole2_viewMatrix);
    
-        //drawing black hole
         glBindTexture(GL_TEXTURE_2D, blackHole_Texture);
         
         float blackHole2_Vertices[] =   {-1.7, -1.7,
@@ -134,55 +132,22 @@ int main(int argc, char *argv[])
                                         -1.7, 1.7};
         
         glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, blackHole2_Vertices);
-        
         glEnableVertexAttribArray(program.positionAttribute);
-        
-        float blackHole2_TexCoords[] = { 0.0, 1.0, 1.0,1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0};
-        glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, blackHole2_TexCoords);
+        float TexCoords[] = { 0.0, 1.0, 1.0,1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0};
+        glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, TexCoords);
         glEnableVertexAttribArray(program.texCoordAttribute);
-        
         glDrawArrays(GL_TRIANGLES, 0, 6);
-        
         glDisableVertexAttribArray(program.positionAttribute);
         glDisableVertexAttribArray(program.texCoordAttribute);
 
-     
         
-    
         
-        program.setModelMatrix(darkrai_modelMatrix);
-        program.setProjectionMatrix(darkrai_projectMatrix);
-        program.setViewMatrix(darkrai_viewMatrix);
-        
-        //drawing darkrai
-        glBindTexture(GL_TEXTURE_2D, darkrai_Texture);
-        float darkrai_Vertices[] =   {  -3.9, -2.0,
-                                        -2.0,-2.0,
-                                        -2.0, 0.0,
-                                        -3.9, -2.0,
-                                        -2.0, 0.0,
-                                        -3.9, 0.0};
-        
-        glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, darkrai_Vertices);
-        
-        glEnableVertexAttribArray(program.positionAttribute);
-        
-        float darkrai_TexCoords[] = {   0.0, 1.0, 1.0, 1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0};
-        
-        glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, darkrai_TexCoords);
-        glEnableVertexAttribArray(program.texCoordAttribute);
-        
-        glDrawArrays(GL_TRIANGLES, 0, 6);
-        
-        glDisableVertexAttribArray(program.positionAttribute);
-        glDisableVertexAttribArray(program.texCoordAttribute);
-        
-    
+        //drawing another black hole
         program.setModelMatrix(blackHole1_modelMatrix);
         program.setProjectionMatrix(blackHole1_projectMatrix);
         program.setViewMatrix(blackHole1_viewMatrix);
         
-        //drawing blackHole_1
+        
         glBindTexture(GL_TEXTURE_2D, blackHole_1_Texture);
         float blackHole1_Vertices[] =   {   -1.25, -1.25,
                                             1.25,-1.25,
@@ -192,16 +157,32 @@ int main(int argc, char *argv[])
                                             -1.25, 1.25};
         
         glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, blackHole1_Vertices);
-        
         glEnableVertexAttribArray(program.positionAttribute);
-        
-        float blackHole1_TexCoords[] = {   0.0, 1.0, 1.0,1.0, 1.0, 0.0,0.0, 1.0, 1.0, 0.0, 0.0, 0.0};
-        
-        glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, blackHole1_TexCoords);
+        glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, TexCoords);
         glEnableVertexAttribArray(program.texCoordAttribute);
-        
         glDrawArrays(GL_TRIANGLES, 0, 6);
+        glDisableVertexAttribArray(program.positionAttribute);
+        glDisableVertexAttribArray(program.texCoordAttribute);
         
+    
+        //drawing darkrai
+        program.setModelMatrix(darkrai_modelMatrix);
+        program.setProjectionMatrix(darkrai_projectMatrix);
+        program.setViewMatrix(darkrai_viewMatrix);
+        
+        glBindTexture(GL_TEXTURE_2D, darkrai_Texture);
+        float darkrai_Vertices[] =   {  -3.9, -2.0,
+                                        -2.0,-2.0,
+                                        -2.0, 0.0,
+                                        -3.9, -2.0,
+                                        -2.0, 0.0,
+                                        -3.9, 0.0};
+        
+        glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, darkrai_Vertices);
+        glEnableVertexAttribArray(program.positionAttribute);
+        glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, TexCoords);
+        glEnableVertexAttribArray(program.texCoordAttribute);
+        glDrawArrays(GL_TRIANGLES, 0, 6);
         glDisableVertexAttribArray(program.positionAttribute);
         glDisableVertexAttribArray(program.texCoordAttribute);
         
