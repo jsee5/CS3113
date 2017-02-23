@@ -26,13 +26,13 @@ void setup(){
     displayWindow = SDL_CreateWindow("Pong", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 360, SDL_WINDOW_OPENGL);
     SDL_GLContext context = SDL_GL_CreateContext(displayWindow);
     SDL_GL_MakeCurrent(displayWindow, context);
-    
+
     glViewport(0, 0, 640, 360);
 
 }
 
 bool isRestrict_yPosition(Entity entity, float y_Units){
-    
+
     bool isRestrict = true;
     float newPos = entity.get_yPosition() + y_Units;
     if (fabs(newPos) < 1.5){
@@ -44,14 +44,14 @@ bool isRestrict_yPosition(Entity entity, float y_Units){
 }
 
 bool isRestrict_xPosition(Entity entity, float x_Units){
-    
+
     bool isRestrict = true;
     float newPos = entity.get_yPosition() + x_Units;
     if (fabs(newPos) < 1.5){
         isRestrict = false;
     }
     //    std::cout << paddle.get_yPosition() << " " << fabs(paddle.get_xPosition()) << std::endl;
-    
+
     return isRestrict;
 }
 
@@ -75,7 +75,7 @@ bool isOffLeftPaddle(Entity ball, Entity leftPaddle){
 
 bool isOver(Entity ball, Entity leftPaddle, Entity rightPaddle){
     bool isOver = false;
-    
+
     if (ball.get_xPosition() < leftPaddle.get_xPosition()){
         isOver = true;
     }
@@ -89,7 +89,7 @@ bool isOffRightPaddle(Entity ball, Entity rightPaddle){
     bool bounce = false;
     //right paddle check
     if(ball.get_xPosition() > 4.0){
-        
+
         if(ball.get_yPosition() + 0.2 >= fabs(rightPaddle.get_yPosition())){
             bounce = true;
         }
@@ -100,54 +100,55 @@ bool isOffRightPaddle(Entity ball, Entity rightPaddle){
 
 int main(int argc, char *argv[])
 {
-    
+
     setup();
-    
+
     ShaderProgram program(RESOURCE_FOLDER"vertex_textured.glsl", RESOURCE_FOLDER"fragment_textured.glsl");
     glUseProgram(program.programID);
-    
+
     //time init
     float lastFrameTicks = 0.0f;
-    
-    
-    
+
+
+
     /* setting up entities */
     Entity leftPaddle;
     GLuint leftPaddle_Texture = leftPaddle.LoadTexture(RESOURCE_FOLDER"paddleBlu.png");
     Entity rightPaddle;
+
     GLuint rightPaddle_Texture = rightPaddle.LoadTexture(RESOURCE_FOLDER"paddleRed.png");
     Entity ball;
     GLuint ball_Texture = ball.LoadTexture(RESOURCE_FOLDER"pokeball.png");
-    
+
     Entity line;
     GLuint line_Texture = line.LoadTexture(RESOURCE_FOLDER"line.png");
-    
+
     Matrix ProjectionMatrix;
     Matrix ViewMatrix;
 
     ProjectionMatrix.setOrthoProjection(-5.0, 5.0, -2.0f, 2.0f, -1.0f, 1.0f);
-    
+
     leftPaddle.setPosition(-4.2, 0.0);
     rightPaddle.setPosition(4.2, 0.0);
     ball.setPosition(0.0, 0.0);
-    
-    
+
+
 #ifdef _WINDOWS
     glewInit();
 #endif
-    
-    
-    
+
+
+
     SDL_Event event;
-    
+
     bool done = false;
     bool begin = false;
     bool restart = false;
     float speed = 1.7;
     ball.setAngle(PI/4);
-    
+
     while (!done) {
-        
+
         /* time tracking */
         float ticks = (float)SDL_GetTicks()/1000.0f;
         float elapsed = ticks - lastFrameTicks;
@@ -167,11 +168,11 @@ int main(int argc, char *argv[])
                 }
             }
         }
-        
+
 //        std::cout<< ball.get_xPosition() << " " << ball.get_yPosition() << std::endl;
-        
+
      /* Player 1 movement */
-        
+
         if(player_1[SDL_SCANCODE_W]){
             if (isRestrict_yPosition(leftPaddle, 0.1) == false){
                 leftPaddle.translate(0.0, 0.1);
@@ -182,7 +183,7 @@ int main(int argc, char *argv[])
                 leftPaddle.translate(0.0, -0.1);
             }
         }
-        
+
         /* player 2 movement */
         if(player_2[SDL_SCANCODE_UP]){
             if (isRestrict_yPosition(rightPaddle, 0.1) == false){
@@ -194,11 +195,11 @@ int main(int argc, char *argv[])
                 rightPaddle.translate(0.0, -0.1);
             }
         }
-        
+
         glClearColor(0.2f,0.1f, 0.2f, 0.2f);
         glClear(GL_COLOR_BUFFER_BIT);
-        
-     
+
+
 
         if (restart == true){
             leftPaddle.reset();
@@ -206,9 +207,9 @@ int main(int argc, char *argv[])
             ball.reset();
             restart = false;
             begin = false;
-            
+
         }
-    
+
         if(begin == true){
             if(isOver(ball, leftPaddle, rightPaddle) == true){
                 restart = true;
@@ -217,7 +218,7 @@ int main(int argc, char *argv[])
             else if(isOffLeftPaddle(ball, leftPaddle)==true){
                 ball.setAngle(PI/2 + ball.getAngle());
                 ball.translate(speed*cos(ball.getAngle())*elapsed, speed*sin(ball.getAngle())*elapsed);
-                
+
             }
             else if(isOffRightPaddle(ball, rightPaddle)==true){
                 ball.setAngle(PI/2 + ball.getAngle());
@@ -231,29 +232,29 @@ int main(int argc, char *argv[])
                 else{
                     ball.setAngle(PI/2 + ball.getAngle());
                     ball.translate(speed*cos(ball.getAngle())*elapsed, speed*sin(ball.getAngle())*elapsed);
-                    
+
                 }
-               
+
             }
-          
+
             else
                 ball.translate(speed*cos(ball.getAngle())*elapsed, speed*sin(ball.getAngle())*elapsed);
             }
-            
-        
-    
-        
 
-        
+
+
+
+
+
         /* left paddle */
         program.setModelMatrix(leftPaddle.getModelMatrix());
         program.setViewMatrix(ViewMatrix);
         program.setProjectionMatrix(ProjectionMatrix);
-        
+
         glBindTexture(GL_TEXTURE_2D, leftPaddle_Texture);
-        
+
         float TexCoords[] = { 0.0, 1.0, 1.0,1.0, 1.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0};
-        
+
         float leftPaddle_Vertices[] =   {   -0.1, -0.5,
                                         0.1, -0.5,
                                         0.1, 0.5,
@@ -261,58 +262,58 @@ int main(int argc, char *argv[])
                                         0.1, 0.5,
                                         -0.1, 0.5};
 
-        
+
         glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, leftPaddle_Vertices );
         glEnableVertexAttribArray(program.positionAttribute);
-     
+
         glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, TexCoords);
         glEnableVertexAttribArray(program.texCoordAttribute);
         glDrawArrays(GL_TRIANGLES, 0, 6);
         glDisableVertexAttribArray(program.positionAttribute);
         glDisableVertexAttribArray(program.texCoordAttribute);
-        
-        
+
+
         /* right paddle */
         program.setModelMatrix(rightPaddle.getModelMatrix());
         program.setViewMatrix(ViewMatrix);
         program.setProjectionMatrix(ProjectionMatrix);
-        
+
         glBindTexture(GL_TEXTURE_2D, rightPaddle_Texture);
-        
+
         float rightPaddle_Vertices[] =   {   -0.1, -0.5,
                                         0.1, -0.5,
                                         0.1, 0.5,
                                         -0.1, -0.5,
                                         0.1, 0.5,
                                         -0.1, 0.5};
-   
-        
+
+
         glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, rightPaddle_Vertices );
         glEnableVertexAttribArray(program.positionAttribute);
-        
+
         glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, TexCoords);
         glEnableVertexAttribArray(program.texCoordAttribute);
         glDrawArrays(GL_TRIANGLES, 0, 6);
         glDisableVertexAttribArray(program.positionAttribute);
         glDisableVertexAttribArray(program.texCoordAttribute);
-        
-        
-        
+
+
+
         /* ball */
         program.setModelMatrix(ball.getModelMatrix());
         program.setViewMatrix(ViewMatrix);
         program.setProjectionMatrix(ProjectionMatrix);
-        
+
         glBindTexture(GL_TEXTURE_2D, ball_Texture);
-        
+
         float ball_Vertices[] =   {  -0.15, -0.15,
                                     0.15, -0.15,
                                     0.15, 0.15,
                                     -0.15, -0.15,
                                     0.15, 0.15,
                                     -0.15, 0.15};
-        
-        
+
+
         glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, ball_Vertices );
         glEnableVertexAttribArray(program.positionAttribute);
 
@@ -321,24 +322,24 @@ int main(int argc, char *argv[])
         glDrawArrays(GL_TRIANGLES, 0, 6);
         glDisableVertexAttribArray(program.positionAttribute);
         glDisableVertexAttribArray(program.texCoordAttribute);
-        
-        
+
+
         program.setModelMatrix(line.getModelMatrix());
         program.setViewMatrix(ViewMatrix);
         program.setProjectionMatrix(ProjectionMatrix);
-        
+
         glBindTexture(GL_TEXTURE_2D, line_Texture);
-        
+
         float line_Vertices[] =   {   -0.1, -0.5,
             0.1, -0.05,
             0.1, 0.05,
             -0.1, -0.05,
             0.1, 0.50,
             -0.1, 0.05};
-        
+
         glVertexAttribPointer(program.positionAttribute, 2, GL_FLOAT, false, 0, line_Vertices );
         glEnableVertexAttribArray(program.positionAttribute);
-        
+
         glVertexAttribPointer(program.texCoordAttribute, 2, GL_FLOAT, false, 0, TexCoords);
         glEnableVertexAttribArray(program.texCoordAttribute);
         glDrawArrays(GL_TRIANGLES, 0, 6);
@@ -346,7 +347,7 @@ int main(int argc, char *argv[])
         glDisableVertexAttribArray(program.texCoordAttribute);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-        
+
         SDL_GL_SwapWindow(displayWindow);
     }
     SDL_Quit();
