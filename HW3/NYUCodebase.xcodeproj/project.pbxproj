@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		69D040051E5F6D9C003B407A /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D040031E5F6D9C003B407A /* Entity.cpp */; };
+		69088F921E6F9EBD00EBD1D1 /* explosion.png in Resources */ = {isa = PBXBuildFile; fileRef = 69088F901E6F9EBD00EBD1D1 /* explosion.png */; };
+		696B32781E68AED7000B5CBF /* dragon_sprite.png in Resources */ = {isa = PBXBuildFile; fileRef = 696B32771E68AED7000B5CBF /* dragon_sprite.png */; };
+		698EFBD01E68C2A200016D26 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 698EFBCF1E68C2A200016D26 /* Entity.cpp */; };
+		6997169F1E5F720A00BA35FA /* SpriteSheet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6997169D1E5F720A00BA35FA /* SpriteSheet.cpp */; };
+		699FD9161E6C92EF00F63735 /* background.png in Resources */ = {isa = PBXBuildFile; fileRef = 699FD9151E6C92EF00F63735 /* background.png */; };
+		699FD91A1E6CB72600F63735 /* enemy_dragon_sprite.png in Resources */ = {isa = PBXBuildFile; fileRef = 699FD9191E6CB72600F63735 /* enemy_dragon_sprite.png */; };
+		69D35D701E6A50BC00D95CE8 /* fireball_sprite.png in Resources */ = {isa = PBXBuildFile; fileRef = 69D35D6F1E6A50BB00D95CE8 /* fireball_sprite.png */; };
+		69E842671E6E0411003D77A0 /* font.png in Resources */ = {isa = PBXBuildFile; fileRef = 69E842661E6E0411003D77A0 /* font.png */; };
 		6D5A86AE19AE5C710066C1FD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5A86AD19AE5C710066C1FD /* Cocoa.framework */; };
 		6D5A86B819AE5C710066C1FD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6D5A86B619AE5C710066C1FD /* InfoPlist.strings */; };
 		6D5A86BA19AE5C710066C1FD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5A86B919AE5C710066C1FD /* main.cpp */; };
@@ -25,9 +32,18 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		699716A01E5F726100BA35FA /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
-		69D040031E5F6D9C003B407A /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Entity.cpp; path = ../Entity.cpp; sourceTree = "<group>"; };
-		69D040041E5F6D9C003B407A /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Entity.h; path = ../Entity.h; sourceTree = "<group>"; };
+		69088F901E6F9EBD00EBD1D1 /* explosion.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = explosion.png; path = textures/explosion.png; sourceTree = "<group>"; };
+		696B32771E68AED7000B5CBF /* dragon_sprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = dragon_sprite.png; path = textures/dragon_sprite.png; sourceTree = "<group>"; };
+		698EFBCE1E68C29100016D26 /* Entity.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Entity.h; path = ../Entity.h; sourceTree = "<group>"; };
+		698EFBCF1E68C2A200016D26 /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Entity.cpp; path = ../Entity.cpp; sourceTree = "<group>"; };
+		698EFBD21E68CBAA00016D26 /* ThreeAxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeAxis.h; sourceTree = "<group>"; };
+		6997169C1E5F71EB00BA35FA /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
+		6997169D1E5F720A00BA35FA /* SpriteSheet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpriteSheet.cpp; sourceTree = "<group>"; };
+		6997169E1E5F720A00BA35FA /* SpriteSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteSheet.h; sourceTree = "<group>"; };
+		699FD9151E6C92EF00F63735 /* background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = background.png; path = textures/background.png; sourceTree = "<group>"; };
+		699FD9191E6CB72600F63735 /* enemy_dragon_sprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = enemy_dragon_sprite.png; path = textures/enemy_dragon_sprite.png; sourceTree = "<group>"; };
+		69D35D6F1E6A50BB00D95CE8 /* fireball_sprite.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fireball_sprite.png; path = textures/fireball_sprite.png; sourceTree = "<group>"; };
+		69E842661E6E0411003D77A0 /* font.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = font.png; path = textures/font.png; sourceTree = "<group>"; };
 		6D5A86AA19AE5C710066C1FD /* NYUCodebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYUCodebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D5A86AD19AE5C710066C1FD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6D5A86B019AE5C710066C1FD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -68,6 +84,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		696B32791E68AEF2000B5CBF /* texture */ = {
+			isa = PBXGroup;
+			children = (
+				69D35D6F1E6A50BB00D95CE8 /* fireball_sprite.png */,
+				699FD9151E6C92EF00F63735 /* background.png */,
+				699FD9191E6CB72600F63735 /* enemy_dragon_sprite.png */,
+				69E842661E6E0411003D77A0 /* font.png */,
+				69088F901E6F9EBD00EBD1D1 /* explosion.png */,
+				696B32771E68AED7000B5CBF /* dragon_sprite.png */,
+			);
+			name = texture;
+			sourceTree = "<group>";
+		};
 		6D5A86A119AE5C710066C1FD = {
 			isa = PBXGroup;
 			children = (
@@ -111,6 +140,7 @@
 		6D5A86B319AE5C710066C1FD /* NYUCodebase */ = {
 			isa = PBXGroup;
 			children = (
+				696B32791E68AEF2000B5CBF /* texture */,
 				6D5A86E119AE5CAA0066C1FD /* Code */,
 				6D5A86B419AE5C710066C1FD /* Supporting Files */,
 			);
@@ -154,10 +184,13 @@
 				6DEF23BC1B96CC2600BCE792 /* Matrix.cpp */,
 				6DEF23BD1B96CC2600BCE792 /* Matrix.h */,
 				6DEF23BE1B96CC2600BCE792 /* ShaderProgram.cpp */,
-				69D040031E5F6D9C003B407A /* Entity.cpp */,
-				69D040041E5F6D9C003B407A /* Entity.h */,
-				699716A01E5F726100BA35FA /* stb_image.h */,
+				6997169D1E5F720A00BA35FA /* SpriteSheet.cpp */,
+				6997169E1E5F720A00BA35FA /* SpriteSheet.h */,
+				698EFBD21E68CBAA00016D26 /* ThreeAxis.h */,
+				698EFBCF1E68C2A200016D26 /* Entity.cpp */,
+				698EFBCE1E68C29100016D26 /* Entity.h */,
 				6DEF23BF1B96CC2600BCE792 /* ShaderProgram.h */,
+				6997169C1E5F71EB00BA35FA /* stb_image.h */,
 				6DEF23C01B96CC2600BCE792 /* vertex.glsl */,
 				6D5A86B919AE5C710066C1FD /* main.cpp */,
 			);
@@ -191,7 +224,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = NYUCB;
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = "Ivan Safrin";
 			};
 			buildConfigurationList = 6D5A86A519AE5C710066C1FD /* Build configuration list for PBXProject "NYUCodebase" */;
@@ -218,12 +251,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				6D5A86B819AE5C710066C1FD /* InfoPlist.strings in Resources */,
+				699FD9161E6C92EF00F63735 /* background.png in Resources */,
+				69E842671E6E0411003D77A0 /* font.png in Resources */,
 				6DEF23C11B96CC2600BCE792 /* fragment.glsl in Resources */,
 				6DE9D2F11BA6AB8C002D599C /* fragment_textured.glsl in Resources */,
+				69088F921E6F9EBD00EBD1D1 /* explosion.png in Resources */,
 				6D5A86C619AE5C710066C1FD /* Images.xcassets in Resources */,
+				69D35D701E6A50BC00D95CE8 /* fireball_sprite.png in Resources */,
 				6D5A86BE19AE5C710066C1FD /* Credits.rtf in Resources */,
+				696B32781E68AED7000B5CBF /* dragon_sprite.png in Resources */,
 				6DEF23C41B96CC2600BCE792 /* vertex.glsl in Resources */,
 				6DC7076A1BA7273500225B7D /* vertex_textured.glsl in Resources */,
+				699FD91A1E6CB72600F63735 /* enemy_dragon_sprite.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,9 +273,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				69D040051E5F6D9C003B407A /* Entity.cpp in Sources */,
 				6DEF23C31B96CC2600BCE792 /* ShaderProgram.cpp in Sources */,
 				6DEF23C21B96CC2600BCE792 /* Matrix.cpp in Sources */,
+				6997169F1E5F720A00BA35FA /* SpriteSheet.cpp in Sources */,
+				698EFBD01E68C2A200016D26 /* Entity.cpp in Sources */,
 				6D5A86BA19AE5C710066C1FD /* main.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,13 +324,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -322,14 +368,19 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -359,6 +410,7 @@
 					/Library/Frameworks/SDL2.framework/Versions/A/Headers,
 				);
 				INFOPLIST_FILE = "NYUCodebase/NYUCodebase-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.ivansafrin.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -382,6 +434,7 @@
 					/Library/Frameworks/SDL2.framework/Versions/A/Headers,
 				);
 				INFOPLIST_FILE = "NYUCodebase/NYUCodebase-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.ivansafrin.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
