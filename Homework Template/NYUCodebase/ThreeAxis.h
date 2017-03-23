@@ -1,14 +1,10 @@
-//
-//  ThreeAxis.hpp
-//  NYUCodebase
-//
-//  Created by Jiaming Chen on 3/23/17.
-//  Copyright © 2017 Ivan Safrin. All rights reserved.
-//
+#ifndef ThreeAxis_h
 
-#ifndef ThreeAxis_hpp
-#define ThreeAxis_hpp
+#define ThreeAxis_h
 
-#include <stdio.h>
+class ThreeAxis{
+public:
+    float x, y, z;
+};
 
-#endif /* ThreeAxis_hpp */
+#endif /* ThreeAxis_h */

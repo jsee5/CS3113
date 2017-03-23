@@ -15,7 +15,7 @@ class Sprite{
     /* variables */
     
     GLuint textureID;
-    float u, v, witdth, height;
+    float u, v, width, height;
 
-}
+};
 

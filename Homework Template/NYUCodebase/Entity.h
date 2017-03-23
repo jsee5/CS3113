@@ -1,3 +1,7 @@
+
+#ifndef Entity_h
+#define Entity_h
+
 #include <SDL.h>
 #include <SDL_opengl.h>
 #include <SDL_image.h>
@@ -14,17 +18,19 @@ public:
     Entity();
     
     //load texture
-    GLuint LoadTexture(const char *filePath);
-
-
+    
+    
     ThreeAxis position;
     ThreeAxis velocity;
     ThreeAxis acceleration;
     ThreeAxis friction;
-
+    
     std::vector<Sprite> Sprites;
-
+    
     float angle;
     int textureID;
     Matrix ModelMatrix;
 };
+
+
+#endif /* Entity_h */
