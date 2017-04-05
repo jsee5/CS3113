@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		696AA7821E84581D0030B63B /* Sprite.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 696AA77F1E84581D0030B63B /* Sprite.cpp */; };
+		696AA7821E84581D0030B63B /* SpriteSheet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 696AA77F1E84581D0030B63B /* SpriteSheet.cpp */; };
 		69C078BC1E84647200AC6444 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C078BA1E84647200AC6444 /* Entity.cpp */; };
 		6D5A86AE19AE5C710066C1FD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5A86AD19AE5C710066C1FD /* Cocoa.framework */; };
 		6D5A86B819AE5C710066C1FD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6D5A86B619AE5C710066C1FD /* InfoPlist.strings */; };
@@ -26,9 +26,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		693B42AC1E84322F00B34C18 /* ThreeAxis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreeAxis.h; sourceTree = "<group>"; };
-		696AA77F1E84581D0030B63B /* Sprite.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Sprite.cpp; sourceTree = "<group>"; };
-		696AA7801E84581D0030B63B /* Sprite.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Sprite.h; sourceTree = "<group>"; };
+		693B42AC1E84322F00B34C18 /* Axis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Axis.h; sourceTree = "<group>"; };
+		696AA77F1E84581D0030B63B /* SpriteSheet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpriteSheet.cpp; sourceTree = "<group>"; };
+		696AA7801E84581D0030B63B /* SpriteSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteSheet.h; sourceTree = "<group>"; };
 		699716A01E5F726100BA35FA /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		69C078BA1E84647200AC6444 /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
 		69C078BB1E84647200AC6444 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
@@ -160,9 +160,9 @@
 				6DEF23BE1B96CC2600BCE792 /* ShaderProgram.cpp */,
 				69C078BA1E84647200AC6444 /* Entity.cpp */,
 				69C078BB1E84647200AC6444 /* Entity.h */,
-				696AA77F1E84581D0030B63B /* Sprite.cpp */,
-				696AA7801E84581D0030B63B /* Sprite.h */,
-				693B42AC1E84322F00B34C18 /* ThreeAxis.h */,
+				696AA77F1E84581D0030B63B /* SpriteSheet.cpp */,
+				696AA7801E84581D0030B63B /* SpriteSheet.h */,
+				693B42AC1E84322F00B34C18 /* Axis.h */,
 				699716A01E5F726100BA35FA /* stb_image.h */,
 				6DEF23BF1B96CC2600BCE792 /* ShaderProgram.h */,
 				6DEF23C01B96CC2600BCE792 /* vertex.glsl */,
@@ -243,7 +243,7 @@
 			files = (
 				6DEF23C31B96CC2600BCE792 /* ShaderProgram.cpp in Sources */,
 				6DEF23C21B96CC2600BCE792 /* Matrix.cpp in Sources */,
-				696AA7821E84581D0030B63B /* Sprite.cpp in Sources */,
+				696AA7821E84581D0030B63B /* SpriteSheet.cpp in Sources */,
 				69C078BC1E84647200AC6444 /* Entity.cpp in Sources */,
 				6D5A86BA19AE5C710066C1FD /* main.cpp in Sources */,
 			);

@@ -1,36 +1,53 @@
-
 #ifndef Entity_h
 #define Entity_h
 
 #include <SDL.h>
 #include <SDL_opengl.h>
 #include <SDL_image.h>
-#include <vector>
-
 #include "ShaderProgram.h"
-#include "Matrix.h"
-#include "ThreeAxis.h"
-#include "Sprite.h"
+#include "Axis.h"
+#include "SpriteSheet.h"
+#include <vector>
+#include <map>
+
+//enum ACTION { IDLE, WALKING, JUMPING};
 
 class Entity{
 public:
     
+    
     Entity();
     
-    //load texture
     
+    void update(float);
+    void nextFrame();
     
-    ThreeAxis position;
-    ThreeAxis velocity;
-    ThreeAxis acceleration;
-    ThreeAxis friction;
+    void render(ShaderProgram*&);
+    bool isColliding_with(Entity&);
     
-    std::vector<Sprite> Sprites;
+    bool isStatic;
+    bool collided_left;
+    bool collided_right;
+    bool collided_top;
+    bool collided_bot;
     
-    float angle;
-    int textureID;
+    Axis position;
+    Axis velocity;
+    Axis acceleration;
+    Axis resistor;
+    
+    float width, height;
+    unsigned frame_index;
+    float frame_timer;
+    
+//    ACTION action_type;
     Matrix ModelMatrix;
+    
+//    std::map<ACTION, std::vector<SpriteSheet*>> actions;
 };
 
-
 #endif /* Entity_h */
+
+
+    
+    
