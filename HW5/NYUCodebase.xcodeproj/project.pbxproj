@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		696AA7821E84581D0030B63B /* SpriteSheet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 696AA77F1E84581D0030B63B /* SpriteSheet.cpp */; };
 		69C078BC1E84647200AC6444 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69C078BA1E84647200AC6444 /* Entity.cpp */; };
+		69D3206E1E955F8500A8C55C /* Vector.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 69D3206D1E955F8500A8C55C /* Vector.cpp */; };
+		69D320731E96BABC00A8C55C /* sheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 69D320721E96BABC00A8C55C /* sheet.png */; };
 		6D5A86AE19AE5C710066C1FD /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D5A86AD19AE5C710066C1FD /* Cocoa.framework */; };
 		6D5A86B819AE5C710066C1FD /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6D5A86B619AE5C710066C1FD /* InfoPlist.strings */; };
 		6D5A86BA19AE5C710066C1FD /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6D5A86B919AE5C710066C1FD /* main.cpp */; };
@@ -26,12 +28,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		693B42AC1E84322F00B34C18 /* Axis.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Axis.h; sourceTree = "<group>"; };
+		693B42AC1E84322F00B34C18 /* Vector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Vector.h; sourceTree = "<group>"; };
 		696AA77F1E84581D0030B63B /* SpriteSheet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SpriteSheet.cpp; sourceTree = "<group>"; };
 		696AA7801E84581D0030B63B /* SpriteSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpriteSheet.h; sourceTree = "<group>"; };
 		699716A01E5F726100BA35FA /* stb_image.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = stb_image.h; sourceTree = "<group>"; };
 		69C078BA1E84647200AC6444 /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
 		69C078BB1E84647200AC6444 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		69D3206D1E955F8500A8C55C /* Vector.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Vector.cpp; sourceTree = "<group>"; };
+		69D320721E96BABC00A8C55C /* sheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = sheet.png; path = spritesheet/sheet.png; sourceTree = "<group>"; };
 		6D5A86AA19AE5C710066C1FD /* NYUCodebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NYUCodebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6D5A86AD19AE5C710066C1FD /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		6D5A86B019AE5C710066C1FD /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
@@ -72,6 +76,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		69D320711E96BAA400A8C55C /* spritesheet */ = {
+			isa = PBXGroup;
+			children = (
+				69D320721E96BABC00A8C55C /* sheet.png */,
+			);
+			name = spritesheet;
+			sourceTree = "<group>";
+		};
 		6D5A86A119AE5C710066C1FD = {
 			isa = PBXGroup;
 			children = (
@@ -152,6 +164,7 @@
 		6D5A86E119AE5CAA0066C1FD /* Code */ = {
 			isa = PBXGroup;
 			children = (
+				69D320711E96BAA400A8C55C /* spritesheet */,
 				6DEF23BB1B96CC2600BCE792 /* fragment.glsl */,
 				6DE9D2F01BA6AB8C002D599C /* fragment_textured.glsl */,
 				6DC707691BA7273500225B7D /* vertex_textured.glsl */,
@@ -162,7 +175,8 @@
 				69C078BB1E84647200AC6444 /* Entity.h */,
 				696AA77F1E84581D0030B63B /* SpriteSheet.cpp */,
 				696AA7801E84581D0030B63B /* SpriteSheet.h */,
-				693B42AC1E84322F00B34C18 /* Axis.h */,
+				693B42AC1E84322F00B34C18 /* Vector.h */,
+				69D3206D1E955F8500A8C55C /* Vector.cpp */,
 				699716A01E5F726100BA35FA /* stb_image.h */,
 				6DEF23BF1B96CC2600BCE792 /* ShaderProgram.h */,
 				6DEF23C01B96CC2600BCE792 /* vertex.glsl */,
@@ -229,6 +243,7 @@
 				6DE9D2F11BA6AB8C002D599C /* fragment_textured.glsl in Resources */,
 				6D5A86C619AE5C710066C1FD /* Images.xcassets in Resources */,
 				6D5A86BE19AE5C710066C1FD /* Credits.rtf in Resources */,
+				69D320731E96BABC00A8C55C /* sheet.png in Resources */,
 				6DEF23C41B96CC2600BCE792 /* vertex.glsl in Resources */,
 				6DC7076A1BA7273500225B7D /* vertex_textured.glsl in Resources */,
 			);
@@ -241,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69D3206E1E955F8500A8C55C /* Vector.cpp in Sources */,
 				6DEF23C31B96CC2600BCE792 /* ShaderProgram.cpp in Sources */,
 				6DEF23C21B96CC2600BCE792 /* Matrix.cpp in Sources */,
 				696AA7821E84581D0030B63B /* SpriteSheet.cpp in Sources */,

@@ -1,3 +1,5 @@
+#pragma once
+
 #ifndef Entity_h
 #define Entity_h
 
@@ -5,12 +7,11 @@
 #include <SDL_opengl.h>
 #include <SDL_image.h>
 #include "ShaderProgram.h"
-#include "Axis.h"
+#include "Vector.h"
 #include "SpriteSheet.h"
 #include <vector>
 #include <map>
 
-//enum ACTION { IDLE, WALKING, JUMPING};
 
 class Entity{
 public:
@@ -18,32 +19,27 @@ public:
     
     Entity();
     
-    
     void update(float);
     void nextFrame();
-    
+    void init_Vectors();
     void render(ShaderProgram*&);
-    bool isColliding_with(Entity&);
+    void toWorldSpace(std::vector<Vector>&);
+
     
-    bool isStatic;
-    bool collided_left;
-    bool collided_right;
-    bool collided_top;
-    bool collided_bot;
+    Vector position;
+    Vector velocity;
+    Vector acceleration;
+    Vector resistance;
     
-    Axis position;
-    Axis velocity;
-    Axis acceleration;
-    Axis resistor;
+    Vector left_lower, left_upper, right_lower, right_upper;
     
-    float width, height;
+    float angle;
     unsigned frame_index;
     float frame_timer;
     
-//    ACTION action_type;
-    Matrix ModelMatrix;
-    
-//    std::map<ACTION, std::vector<SpriteSheet*>> actions;
+    SpriteSheet sprite;
+    Matrix matrix;
+
 };
 
 #endif /* Entity_h */
