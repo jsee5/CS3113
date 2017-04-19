@@ -8,103 +8,127 @@ float lerp(float v0, float v1, float t) {
 
 Entity::Entity(){
     velocity.x = velocity.y = 0;
-    resistor.x = 0.2f;
-    resistor.y = 9.8;
+    resistance.x = 1.5f;
+    resistance.y = 1.5f;
+    
 }
-
+void Entity::init_Vectors(){
+    left_lower = Vector(-0.5f*sprite.size*sprite.aspect, -0.5f*sprite.size);
+    right_upper = Vector(0.5f*sprite.size*sprite.aspect, 0.5f*sprite.size);
+    left_upper = Vector(-0.5f*sprite.size*sprite.aspect, 0.5f*sprite.size);
+    right_lower = Vector(0.5f*sprite.size*sprite.aspect, -0.5f*sprite.size);
+    
+    
+}
 void Entity::update(float elapsed) {
     
-    if(collided_right){
-        if (velocity.x > 0){
-            velocity.x = 0;
-        }
+    
+    velocity.x = lerp(velocity.x, 0.0f, elapsed * resistance.x);
+    velocity.y = lerp(velocity.y, 0.0f, elapsed * resistance.y);
+    
+    velocity.x += acceleration.x * elapsed;
+    velocity.y += acceleration.y * elapsed;
+    
+    position.x = velocity.x * elapsed;
+    position.y = velocity.y * elapsed;
+    
+    matrix.Translate(position.x, position.y, 0.0f);
+    matrix.Rotate(angle);
+    
+    if(matrix.m[3][0] + sprite.width > 5.33){
+        
+        acceleration.x *= -1;
+        velocity.x *= -0.5;
+        acceleration.y *= -1;
+        matrix.m[3][0] -= (sprite.width);
+        
     }
-    if(collided_left){
-        if (velocity.x < 0){
-            velocity.x = 0;
-        }
+    if(matrix.m[3][0] - sprite.width < -5.33){
+        acceleration.x *= -1;
+        velocity.x *= -0.5;
+        acceleration.y *= -1;
+        matrix.m[3][0] += (sprite.width);
     }
     
+    if(matrix.m[3][1] + sprite.height > 3.55){
+        acceleration.x *= -1;
+        acceleration.y *= -1;
+        velocity.y *= -0.5;
+        matrix.m[3][1] -= (sprite.height);
+        
+    }
+    if(matrix.m[3][1] - sprite.height < -3.55){
+        
+        acceleration.x *= -1;
+        acceleration.y *= -1;
+        velocity.y *= -0.5;
+        matrix.m[3][1] += (sprite.height);
+        
+    }
     
-    if(!isStatic){
-        velocity.x = lerp(velocity.x, 0.0f, elapsed * resistor.x);
-        velocity.y = lerp(velocity.y, 0.0f, elapsed * resistor.y);
-        
-        velocity.x += acceleration.x * elapsed;
-        velocity.y += acceleration.y * elapsed;
-        
-        position.x += velocity.x * elapsed;
-        position.y += velocity.y * elapsed;
-    }
-    else{
-        acceleration.x = 0;
-        acceleration.y = 0;
-        velocity.x = 0;
-        velocity.y = 0;
-    }
-    if(frame_timer > 10*elapsed){
-        nextFrame();
-        frame_timer = 0;
-    }
-    frame_timer += elapsed;
-    std::cout << position.x << " " << position.y << std::endl;
 }
 
-//void Entity::render(ShaderProgram*& program){
+void Entity::toWorldSpace(std::vector<Vector>& world){
+    
+    world.resize(4);
+    
+    world[0].x = left_lower.x * matrix.m[0][0] + left_lower.y *matrix.m[1][0] + matrix.m[3][0];
+    world[0].y = left_lower.x * matrix.m[0][1] + left_lower.y *matrix.m[1][1] + matrix.m[3][1];
+    
+    world[1].x = right_upper.x * matrix.m[0][0] + right_upper.y *matrix.m[1][0] + matrix.m[3][0];
+    world[1].y = right_upper.x * matrix.m[0][1] + right_upper.y *matrix.m[1][1] + matrix.m[3][1];
+    
+    world[2].x = left_upper.x * matrix.m[0][0] + left_upper.y *matrix.m[1][0] + matrix.m[3][0];
+    world[2].y = left_upper.x * matrix.m[0][1] + left_upper.y *matrix.m[1][1] + matrix.m[3][1];
+    
+    world[3].x = right_lower.x * matrix.m[0][0] + right_lower.y *matrix.m[1][0] + matrix.m[3][0];
+    world[3].y = right_lower.x * matrix.m[0][1] + right_lower.y *matrix.m[1][1] + matrix.m[3][1];
+}
+
+void Entity::render(ShaderProgram*& program){
+    
+    program->setModelMatrix(matrix);
+    sprite.draw(program);
+}
+
+
+//bool Entity::isColliding_with(Entity& entity){
 //    
-//    if(velocity.x != 0){
-//        actions[some_action][frame_index]->draw(program);
-//    }
-//    else{
-//        actions[some_action][frame_index]->draw(program);
+//    if(position.x > entity.position.x - entity.width/2 &&
+//       position.x < entity.position.x + entity.width/2 &&
+//       position.y-height/2 <= entity.position.y + entity.height/2 &&
+//       entity.position.y+height/2 > entity.position.y + entity.height/2){
+//        
+//        entity.collided_bot = false;
+//        
 //        
 //    }
+//    else if(position.x-width < entity.position.x - entity.width/2 &&
+//            position.x+width/2 >= entity.position.x - entity.width/2 &&
+//            ((position.y+height/2 >= entity.position.y - entity.height/2 &&
+//              position.y-height/2 <= entity.position.y - entity.height/2 )
+//             ||
+//             (position.y-height/2 <= entity.position.y + entity.height/2 &&
+//              position.y-height/2 >= entity.position.y - entity.height/2))){
+//                 
+//                 collided_bot = false;
+//                 collided_right = true;
+//                 entity.position.x = rand()%7;
+//             }
+//    
+//    else if(position.x+width > entity.position.x + entity.width/2 &&
+//            position.x-width/2 <= entity.position.x + entity.width/2 &&
+//            ((position.y+height/2 >= entity.position.y - entity.height/2 && position.y-height/2 <= entity.position.y - entity.height/2 )
+//             ||
+//             (position.y-height/2 <= entity.position.y + entity.height/2 && position.y-height/2 >= entity.position.y - entity.height/2))){
+//                
+//                collided_bot = false;
+//                collided_left = true;
+//                entity.position.x = rand()%8;
+//            }
+//    
+//    
+//    return true;
 //}
-
-//void Entity::nextFrame(){
-//    if(frame_index + 1 == 9){
-//        frame_index = 0;
-//    }
-//    frame_index += 1;
-//}
-
-bool Entity::isColliding_with(Entity& entity){
-    
-    if(position.x > entity.position.x - entity.width/2 &&
-       position.x < entity.position.x + entity.width/2 &&
-       position.y-height/2 <= entity.position.y + entity.height/2 &&
-       entity.position.y+height/2 > entity.position.y + entity.height/2){
-        
-        entity.collided_bot = false;
-        
-        
-    }
-    else if(position.x-width < entity.position.x - entity.width/2 &&
-            position.x+width/2 >= entity.position.x - entity.width/2 &&
-            ((position.y+height/2 >= entity.position.y - entity.height/2 &&
-              position.y-height/2 <= entity.position.y - entity.height/2 )
-             ||
-             (position.y-height/2 <= entity.position.y + entity.height/2 &&
-              position.y-height/2 >= entity.position.y - entity.height/2))){
-                 
-                 collided_bot = false;
-                 collided_right = true;
-                 entity.position.x = rand()%7;
-             }
-    
-    else if(position.x+width > entity.position.x + entity.width/2 &&
-            position.x-width/2 <= entity.position.x + entity.width/2 &&
-            ((position.y+height/2 >= entity.position.y - entity.height/2 && position.y-height/2 <= entity.position.y - entity.height/2 )
-             ||
-             (position.y-height/2 <= entity.position.y + entity.height/2 && position.y-height/2 >= entity.position.y - entity.height/2))){
-                
-                collided_bot = false;
-                collided_left = true;
-                entity.position.x = rand()%8;
-            }
-    
-    
-    return true;
-}
-
-
+//
+//

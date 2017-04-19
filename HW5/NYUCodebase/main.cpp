@@ -12,6 +12,7 @@
 #include <SDL.h>
 #include <SDL_opengl.h>
 #include <SDL_image.h>
+#include <SDL_mixer.h>
 #include <vector>
 #include <algorithm>
 
@@ -41,6 +42,11 @@ Entity plane, rock1, rock2, rock3, rock4, rock5, rock6;
 float lastFrameTicks;
 bool done = false;
 Matrix ModelMatrix, ProjectionMatrix, ViewMatrix;
+
+/*music*/
+
+Mix_Music *music = Mix_LoadMUS(RESOURCE_FOLDER"BoxCat_Games_-_10_-_Epic_Song.mp3");
+Mix_Chunk *engine, *boom;
 
 /*Required to implement penetrationSort and testSATSeparationForEdge */
 bool testSATSeparationForEdge(float edgeX, float edgeY, const std::vector<Vector> &points1, const std::vector<Vector> &points2, Vector &penetration) {
@@ -202,10 +208,15 @@ void setup(){
     SDL_GLContext context = SDL_GL_CreateContext(displayWindow);
     SDL_GL_MakeCurrent(displayWindow, context);
     glViewport(0, 0, 640, 360);
+    Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 4096);
+    engine = Mix_LoadWAV(RESOURCE_FOLDER"space_engine.wav");
+    boom = Mix_LoadWAV(RESOURCE_FOLDER"boom.wav");
+    
 }
 
 
 void process_input(SDL_Event* event){
+    
     const Uint8 *key1 = SDL_GetKeyboardState(NULL);
     const Uint8 *key2 = SDL_GetKeyboardState(NULL);
     while (SDL_PollEvent(event)) {
@@ -222,15 +233,19 @@ void process_input(SDL_Event* event){
         }
         if(key1[SDL_SCANCODE_D]){
             plane.acceleration.x = 6.0f;
+        
         }
         else if(key1[SDL_SCANCODE_A]){
             plane.acceleration.x = -6.0f;
+
         }
         else if(key1[SDL_SCANCODE_W]){
             plane.acceleration.y = 6.0f;
+
         }
         else if(key1[SDL_SCANCODE_S]){
             plane.acceleration.y = -6.0f;
+
         }
         if((key1[SDL_SCANCODE_A] && key2[SDL_SCANCODE_W]) || (key1[SDL_SCANCODE_A] && key2[SDL_SCANCODE_S])){
             plane.angle = 0.02f;
@@ -252,15 +267,17 @@ void checkCollision(Entity& entity1, Entity& entity2){
     Vector penetration;
     
     if(checkSATCollision(entity1_toWorld, entity2_toWorld, penetration)){
-//        entity1.matrix.Translate(0.5f*penetration.x, 0.5*penetration.y, 0);
-//        entity2.matrix.Translate(-0.5f*penetration.x, -0.5*penetration.y, 0);
         
         entity1.matrix.m[3][0] += 0.5f*penetration.x;
         entity1.matrix.m[3][1] += 0.5f*penetration.y;
         
         entity2.matrix.m[3][0] -= 0.5f*penetration.x;
         entity2.matrix.m[3][1] -= 0.5f*penetration.y;
+        
+        Mix_PlayChannelTimed(-1, boom, -1, 250);
+
     }
+
 
 }
 
@@ -294,7 +311,10 @@ void update(float elapsed){
     
 
     checkCollision(rock5, rock6);
-
+    if(plane.acceleration.x != 0 || plane.acceleration.y != 0) {
+        Mix_PlayChannelTimed( -1, engine, 1, 1000);
+    }
+    
     rock1.update(elapsed);
     rock2.update(elapsed);
     rock3.update(elapsed);
@@ -410,6 +430,7 @@ int main(int argc, char *argv[]){
 
     ProjectionMatrix.setOrthoProjection(LEFT_BOUND, RIGHT_BOUND, LOWER_BOUND, UPPER_BOUND, -1.0f, 1.0f);
     
+    Mix_PlayMusic(music, -1);
     while (!done) {
         
         process_input(&event);
@@ -430,11 +451,13 @@ int main(int argc, char *argv[]){
             update(1/FPS);
         }
         update(fixedElapsed);
-        
-//        std::cout<< plane.matrix.m[3][0] << " " << plane.matrix.m[3][1] << std::endl;
+
         render(&program);
         
     }
+    Mix_FreeChunk(boom);
+    Mix_FreeChunk(engine);
+    Mix_FreeMusic(music);
     SDL_Quit();
     return 0;
 }
