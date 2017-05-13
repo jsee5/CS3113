@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with TexturePacker http://www.codeandweb.com/texturepacker-->
+<!-- $TexturePacker:SmartUpdate:390e4b786e833f986cb03b9e4436f229:64b78a3b7b3cca0f37b913c5fb84a403:16eb453bcd9dd58ca4f5054f6609e1b5$ -->
+<!--Format:
+n  => name of the sprite
+x  => sprite x pos in texture
+y  => sprite y pos in texture
+w  => sprite width (may be trimmed)
+h  => sprite height (may be trimmed)
+pX => x pos of the pivot point (relative to sprite width)
+pY => y pos of the pivot point (relative to sprite height)
+oX => sprite's x-corner offset (only available if trimmed)
+oY => sprite's y-corner offset (only available if trimmed)
+oW => sprite's original width (only available if trimmed)
+oH => sprite's original height (only available if trimmed)
+r => 'y' only set if sprite is rotated
+with polygon mode enabled:
+vertices   => points in sprite coordinate system (x0,y0,x1,y1,x2,y2, ...)
+verticesUV => points in sheet coordinate system (x0,y0,x1,y1,x2,y2, ...)
+triangles  => sprite triangulation, 3 vertex indices per triangle
+-->
+<TextureAtlas imagePath="zombie_f.png" width="1024" height="543">
+    <sprite n="Attack (1).png" x="0" y="0" w="128" h="142" pX="0.5" pY="0.5"/>
+    <sprite n="Attack (2).png" x="128" y="0" w="128" h="142" pX="0.5" pY="0.5"/>
+    <sprite n="Attack (3).png" x="256" y="0" w="128" h="142" pX="0.5" pY="0.5"/>
+    <sprite n="Attack (4).png" x="384" y="0" w="128" h="142" pX="0.5" pY="0.5"/>
+    <sprite n="Attack (5).png" x="512" y="0" w="128" h="142" pX="0.5" pY="0.5"/>
+    <sprite n="Attack (6).png" x="640" y="0" w="128" h="142" pX="0.5" pY="0.5"/>
+    <sprite n="Attack (7).png" x="768" y="0" w="128" h="142" pX="0.5" pY="0.5"/>
+    <sprite n="Attack (8).png" x="896" y="0" w="128" h="142" pX="0.5" pY="0.5"/>
+    <sprite n="Dead (1).png" x="0" y="142" w="128" h="117" pX="0.5" pY="0.5"/>
+    <sprite n="Dead (2).png" x="128" y="142" w="128" h="117" pX="0.5" pY="0.5"/>
+    <sprite n="Dead (3).png" x="256" y="142" w="128" h="117" pX="0.5" pY="0.5"/>
+    <sprite n="Dead (4).png" x="384" y="142" w="128" h="117" pX="0.5" pY="0.5"/>
+    <sprite n="Dead (5).png" x="512" y="142" w="128" h="117" pX="0.5" pY="0.5"/>
+    <sprite n="Dead (6).png" x="640" y="142" w="128" h="117" pX="0.5" pY="0.5"/>
+    <sprite n="Dead (7).png" x="768" y="142" w="128" h="117" pX="0.5" pY="0.5"/>
+    <sprite n="Dead (8).png" x="896" y="142" w="128" h="117" pX="0.5" pY="0.5"/>
+    <sprite n="Dead (9).png" x="0" y="259" w="128" h="117" pX="0.5" pY="0.5"/>
+    <sprite n="Dead (10).png" x="128" y="259" w="128" h="117" pX="0.5" pY="0.5"/>
+    <sprite n="Dead (11).png" x="256" y="259" w="128" h="117" pX="0.5" pY="0.5"/>
+    <sprite n="Dead (12).png" x="384" y="259" w="128" h="117" pX="0.5" pY="0.5"/>
+    <sprite n="Walk (1).png" x="512" y="259" w="128" h="142" pX="0.5" pY="0.5"/>
+    <sprite n="Walk (2).png" x="640" y="259" w="128" h="142" pX="0.5" pY="0.5"/>
+    <sprite n="Walk (3).png" x="768" y="259" w="128" h="142" pX="0.5" pY="0.5"/>
+    <sprite n="Walk (4).png" x="896" y="259" w="128" h="142" pX="0.5" pY="0.5"/>
+    <sprite n="Walk (5).png" x="0" y="401" w="128" h="142" pX="0.5" pY="0.5"/>
+    <sprite n="Walk (6).png" x="128" y="401" w="128" h="142" pX="0.5" pY="0.5"/>
+    <sprite n="Walk (7).png" x="256" y="401" w="128" h="142" pX="0.5" pY="0.5"/>
+    <sprite n="Walk (8).png" x="384" y="401" w="128" h="142" pX="0.5" pY="0.5"/>
+    <sprite n="Walk (9).png" x="512" y="401" w="128" h="142" pX="0.5" pY="0.5"/>
+    <sprite n="Walk (10).png" x="640" y="401" w="128" h="142" pX="0.5" pY="0.5"/>
+</TextureAtlas>
